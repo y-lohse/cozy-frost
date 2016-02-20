@@ -1,9 +1,9 @@
-'use strict';
+var express = require('express');
+var router = express.Router();
 
-var ArchivesController = {
-    index: function(req, res, next){
-        res.send('hello world');
-    }
-}
+router.get('/', function(req, res, next) {
+    res.status(200).sendFile('index.html');
+});
 
-module.exports = ArchivesController;
+// Export the router instance to make it available from other files.
+module.exports = router;
