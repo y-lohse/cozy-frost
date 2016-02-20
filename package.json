@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "americano": "^0.4.3",
     "website-scraper": "^0.3.1"
   }
 }
