@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "cozydb": "^0.1.10",
     "express": "^4.13.4",
     "website-scraper": "^0.3.1"
   }
