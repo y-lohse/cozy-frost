@@ -12,6 +12,7 @@
     "body-parser": "^1.15.0",
     "cozydb": "^0.1.10",
     "express": "^4.13.4",
+    "rimraf": "^2.5.2",
     "tar-fs": "^1.10.0",
     "website-scraper": "^0.3.1"
   }
