@@ -6,10 +6,6 @@ export class Archives{
 	archives = [];
 
 	constructor(http){
-		this.archives.push({
-			'url': 'lol.com'
-		});
-		
 		http.configure(config => {
 			config
 				.useStandardConfiguration()
@@ -18,7 +14,7 @@ export class Archives{
 		
 		this.http = http;
 	}
-	activate(){
+	created(){
 		return this.http.fetch('archives')
 		.then(response => response.json())
 		.then(archives => this.archives = archives);

@@ -6,10 +6,10 @@ var cozydb = require('cozydb');
 /*
     Configuration section.
 */
-//app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({
+//    extended: true
+//}));
 app.use(express.static('client'));
 
 
