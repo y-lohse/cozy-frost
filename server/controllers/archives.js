@@ -20,12 +20,12 @@ router.get('/archive/:id', function(req, res, next){
 		if (err) next(err);
 		else if (!page) next();
 		else{
-			var stream = page.getBinary('nodejs-1456049545563.tar', function(err){
-				console.log(err);
-				res.redirect('/cache/nodejs-1456049545563');
+			var stream = page.getBinary(page.slug + '.tar', function(err){
+				if (err) console.log(err);
+				res.redirect('/cache/' + page.slug);
 			});
 			
-			stream.pipe(tar.extract(__dirname + '/../../client/cache/nodejs-1456049545563'));
+			stream.pipe(tar.extract(__dirname + '/../../client/cache/' + page.slug));
 		}
 	});
 });
@@ -47,7 +47,8 @@ router.post('/archive', function(req, res, next){
 	
 	//create DB object
 	WebPage.create({
-		'url': url
+		'url': url,
+		'slug': slug
 	}, function(err, webpage){
 		if (err) next(err);
 		else{
