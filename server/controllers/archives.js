@@ -30,6 +30,19 @@ router.get('/archive/:id', function(req, res, next){
 	});
 });
 
+router.delete('/archive/:id', function(req, res, next){
+	WebPage.find(req.params.id, function(err, page){
+		if (err) next(err);
+		else if (!page) next();
+		else{
+			page.destroy(function(err){
+				if (err) next(err);
+				else res.status(200);
+			});
+		}
+	});
+});
+
 router.post('/archive', function(req, res, next){
 	var url = req.body.url,
 		slug = url.match(/^https?:\/\/(\w+)\/?/)[1] + '-' + (new Date().getTime()),

@@ -2,6 +2,10 @@
 	<div repeat.for="archive of archives">
 		${archive._id}
 		<br />
-		${archive.url}
+		<a href="${archive.url}">
+			${archive.url}
+		</a>
+		
+		<button click.trigger="removeArchive(archive)">delete</button>
 	</div>
 </template>

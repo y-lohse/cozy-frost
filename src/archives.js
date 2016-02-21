@@ -23,4 +23,12 @@ export class Archives{
 		.then(response => response.json())
 		.then(archives => this.archives = archives);
 	}
+	removeArchive(archive){
+		this.http.fetch('archive/' + archive._id, {
+			method: 'DELETE'
+		})
+		.then(function(response){
+//			alert(response.ok);
+		});
+	}
 }
