@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var WebPage = require('../models/webpage');
 var fs = require('fs');
+var path = require('path');
+var tar = require('tar-fs');
 
 router.get('/archives', function(req, res, next){
 	WebPage.request('all', function(err, pages){
@@ -13,15 +15,16 @@ router.get('/archives', function(req, res, next){
 });
 
 router.get('/archive/:id', function(req, res, next){
-	console.log(req.params.id);
 	WebPage.find(req.params.id, function(err, page){
 		if (err) next(err);
+		else if (!page) next();
 		else{
-			var stream = page.getBinary('index.html', function(err){
+			var stream = page.getBinary('nodejs-1456049545563.tar', function(err){
 				console.log(err);
-				res.status(200).sendFile(__dirname + '/index.html');
+				res.redirect('/cache/nodejs-1456049545563');
 			});
-			stream.pipe(fs.createWriteStream(__dirname + '/index.html'));
+			
+			stream.pipe(tar.extract(__dirname + '/../../client/cache/nodejs-1456049545563'));
 		}
 	});
 });

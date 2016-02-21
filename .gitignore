@@ -1,5 +1,6 @@
 scrap/*
 node_modules/
+client/cache/
 
 # Windows image file caches
 Thumbs.db
