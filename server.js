@@ -10,9 +10,7 @@ var cozydb = require('cozydb');
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(express.static('client', {
-	index: false
-}));
+app.use(express.static('client'));
 
 
 /*
