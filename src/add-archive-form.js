@@ -15,12 +15,17 @@ export class AddArchiveForm{
 		this.http = http;
 	}
 	submit(){
-		alert('submitting');
+		var myHeaders = new Headers();
+		myHeaders.append('COntent-Type', 'application/json');
 		this.http.fetch('archive', {
 			method: 'post',
+			headers: myHeaders,
 			body: JSON.stringify({
 				url: this.url
 			})
+		})
+		.then(function(response){
+			
 		});
 	}
 }

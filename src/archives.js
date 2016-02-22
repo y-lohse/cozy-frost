@@ -24,7 +24,7 @@ export class Archives{
 			method: 'DELETE'
 		})
 		.then(function(response){
-//			alert(response.ok);
+			console.log(response.ok);
 		});
 	}
 }
