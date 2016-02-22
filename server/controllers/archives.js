@@ -37,13 +37,14 @@ router.delete('/archive/:id', function(req, res, next){
 		else{
 			page.destroy(function(err){
 				if (err) next(err);
-				else res.status(200);
+				else res.status(200).send();
 			});
 		}
 	});
 });
 
 router.post('/archive', function(req, res, next){
+	console.log(req.body);
 	var url = req.body.url,
 		slug = url.match(/^https?:\/\/(\w+)\/?/)[1] + '-' + (new Date().getTime()),
 		scrapDestination = './scrap/' + slug,
@@ -67,7 +68,7 @@ router.post('/archive', function(req, res, next){
 		else{
 			console.log('DB object created');
 			//everything is ok for the user, the rest will be async
-			res.redirect('/');
+			res.status(200).send();
 			
 			//start actual scraping
 			scraper.scrape(options).then(function(result){
