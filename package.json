@@ -1,13 +1,19 @@
 {
   "name": "cozy-archives",
+  "cozy-displayName": "Web Archives",
   "version": "0.0.1",
-  "description": "",
+  "description": "Save web page back ups on your COzy.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Yannick Lohse",
   "license": "MIT",
+  "cozy-permissions": {
+	"webpage": {
+		"description": "Store and display back-ups of web pages."
+	}  
+  },
   "dependencies": {
     "body-parser": "^1.15.0",
     "cozydb": "^0.1.10",
