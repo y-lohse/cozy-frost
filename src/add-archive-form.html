@@ -1,6 +1,11 @@
 <template>
-	<form submit.delegate="submit()">
-		<input type="url" value.bind="url" />
-		<input type="submit" value="archive" />
+	<form submit.delegate="submit()" class="form-inline">
+		<div class="form-group">
+			<label for="url" class="sr-only">
+				URL:
+			</label>
+			<input type="url" value.bind="url" id="url" class="form-control" placeholder="http://example.com" />
+		</div>
+		<input type="submit" value="archive" class="btn btn-primary " />
 	</form>
 </template>

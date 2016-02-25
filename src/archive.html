@@ -1,3 +1,15 @@
 <template>
-	<iframe src="/archive/${id}"></iframe>
+	<nav navbar navbar-default navbar-static-top>
+		<div class="container-fluid">
+			<ul class="nav navbar-nav">
+				<li>
+					<a route-href="route: index;">
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						back
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<iframe src="/archive/${id}" class=""></iframe>
 </template>

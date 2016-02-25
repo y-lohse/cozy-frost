@@ -1,0 +1,11 @@
+html,body,.page-host{
+	height: 100%;
+}
+.margin-vertical{
+	margin: 30px 0;
+}
+iframe{
+	width: 100%;
+	min-height: calc(100% - 55px);
+	border: none;
+}
