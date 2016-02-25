@@ -1,8 +1,6 @@
 scrap/*
 node_modules/
-client/jspm_packages/
 client/cache/
-client/dist/
 
 # Windows image file caches
 Thumbs.db

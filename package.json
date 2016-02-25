@@ -1,7 +1,7 @@
 {
   "name": "cozy-archives",
   "cozy-displayName": "Web Archives",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Save web page back ups on your COzy.",
   "main": "server.js",
   "scripts": {
