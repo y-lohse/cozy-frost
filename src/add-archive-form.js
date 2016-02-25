@@ -1,31 +1,14 @@
 import {inject} from 'aurelia-framework';
-import {HttpClient} from 'aurelia-fetch-client';
+import {ArchivesDB} from 'ArchivesDB';
 
-@inject(HttpClient)
+@inject(ArchivesDB)
 export class AddArchiveForm{
 	url = '';
  
- 	constructor(http){
-		http.configure(config => {
-			config
-				.useStandardConfiguration()
-				.withBaseUrl('/');
-		});
-		
-		this.http = http;
+ 	constructor(ArchivesDB){
+		this.ArchivesDB = ArchivesDB;
 	}
 	submit(){
-		var myHeaders = new Headers();
-		myHeaders.append('COntent-Type', 'application/json');
-		this.http.fetch('archive', {
-			method: 'post',
-			headers: myHeaders,
-			body: JSON.stringify({
-				url: this.url
-			})
-		})
-		.then(function(response){
-			
-		});
+		this.ArchivesDB.add(this.url);
 	}
 }

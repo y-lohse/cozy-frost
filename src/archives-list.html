@@ -1,8 +1,6 @@
 <template>
 	<div repeat.for="archive of archives">
-		${archive._id}
-		<br />
-		<a href="${archive.url}">
+		<a route-href="route: archive; params.bind: {id: archive._id}">
 			${archive.url}
 		</a>
 		
