@@ -1,7 +1,8 @@
 {
   "name": "cozy-archives",
   "cozy-displayName": "Web Archives",
-  "version": "0.0.2",
+  "icon-path": "icon.png",
+  "version": "0.0.3",
   "description": "Save web page back ups on your COzy.",
   "main": "server.js",
   "scripts": {
