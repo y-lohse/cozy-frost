@@ -17,18 +17,12 @@ router.get('/archives', function(req, res, next){
 
 router.get('/view/:id', function(req, res, next){
 	WebPage.find(req.params.id, function(err, page){
-		console.log(req);
-		console.log(req.baseUrl);
-		
 		if (err) next(err);
 		else if (!page) next();
 		else{
 			var stream = page.getBinary(page.slug + '.tar', function(err){
 				if (err) console.log(err);
-//				res.redirect('../cache/' + page.slug);
-				res.sendFile(path.resolve(__dirname + '/../../client/cache/' + page.slug + '/index.html'));
-				//https://cloud.yannick-lohse.fr/apps/archives/view/a979284e57d2067a022348b774083f95
-				//https://cloud.yannick-lohse.fr/apps/archives/cache/www-1456576897769
+				res.redirect(req.headers.referer + 'cache/' + page.slug);
 			});
 			
 			stream.pipe(tar.extract(__dirname + '/../../client/cache/' + page.slug));
