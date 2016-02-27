@@ -205,7 +205,7 @@ System.config({
     }
   },
   bundles: {
-    "app-build-c993bbc66a.js": [
+    "app-build-ce4064778c.js": [
       "ArchivesDB.js",
       "add-archive-form.html!github:systemjs/plugin-text@0.0.3.js",
       "add-archive-form.js",
@@ -313,6 +313,10 @@ System.config({
   },
   depCache: {
     "add-archive-form.js": [
+      "npm:aurelia-framework@1.0.0-beta.1.1.3.js",
+      "ArchivesDB.js"
+    ],
+    "archive.js": [
       "npm:aurelia-framework@1.0.0-beta.1.1.3.js",
       "ArchivesDB.js"
     ],

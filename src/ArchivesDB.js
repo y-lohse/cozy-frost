@@ -46,4 +46,10 @@ export class ArchivesDB{
 			this.archives.splice(this.archives.indexOf(archive), 1);
 		});
 	}
+	get(id){
+		return this.http.fetch('archive/' + id, {
+			method: 'GET'
+		})
+		.then(response => response.json());
+	}
 }

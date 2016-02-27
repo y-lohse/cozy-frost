@@ -15,14 +15,14 @@ router.get('/archives', function(req, res, next){
 	});
 });
 
-router.get('/view/:id', function(req, res, next){
+router.get('/archive/:id', function(req, res, next){
 	WebPage.find(req.params.id, function(err, page){
 		if (err) next(err);
 		else if (!page) next();
 		else{
 			var stream = page.getBinary(page.slug + '.tar', function(err){
 				if (err) console.log(err);
-				res.redirect(req.headers.referer + 'cache/' + page.slug);
+				res.status(200).json({url: 'cache/' + page.slug});
 			});
 			
 			stream.pipe(tar.extract(__dirname + '/../../client/cache/' + page.slug));
