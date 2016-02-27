@@ -22,7 +22,7 @@ router.get('/archive/:id', function(req, res, next){
 		else{
 			var stream = page.getBinary(page.slug + '.tar', function(err){
 				if (err) console.log(err);
-				res.status(200).json({url: 'cache/' + page.slug});
+				res.status(200).json({url: 'cache/' + page.slug + '/'});
 			});
 			
 			stream.pipe(tar.extract(__dirname + '/../../client/cache/' + page.slug));
