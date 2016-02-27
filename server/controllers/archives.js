@@ -15,7 +15,7 @@ router.get('/archives', function(req, res, next){
 	});
 });
 
-router.get('/archive/:id', function(req, res, next){
+router.get('/view/:id', function(req, res, next){
 	WebPage.find(req.params.id, function(err, page){
 		if (err) next(err);
 		else if (!page) next();

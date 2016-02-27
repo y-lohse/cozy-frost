@@ -205,7 +205,7 @@ System.config({
     }
   },
   bundles: {
-    "app-build-fc0be9aa33.js": [
+    "app-build-c993bbc66a.js": [
       "ArchivesDB.js",
       "add-archive-form.html!github:systemjs/plugin-text@0.0.3.js",
       "add-archive-form.js",
