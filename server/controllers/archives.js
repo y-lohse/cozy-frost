@@ -22,7 +22,7 @@ router.get('/view/:id', function(req, res, next){
 		else{
 			var stream = page.getBinary(page.slug + '.tar', function(err){
 				if (err) console.log(err);
-				res.redirect('/cache/' + page.slug);
+				res.redirect('../cache/' + page.slug);
 			});
 			
 			stream.pipe(tar.extract(__dirname + '/../../client/cache/' + page.slug));
