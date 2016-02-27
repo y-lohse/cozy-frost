@@ -26,6 +26,8 @@ cozydb.configure(__dirname, null, function(){
 	var server = app.listen(9250, function (){
 		var host = server.address().address;
 		var port = server.address().port;
+		
+		console.log(app.mountpath);
 
 		console.log('Listening at http://%s:%s', host, port);
 	});
