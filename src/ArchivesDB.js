@@ -8,8 +8,7 @@ export class ArchivesDB{
 	constructor(http){
 		http.configure(config => {
 			config
-				.useStandardConfiguration()
-				.withBaseUrl('/');
+				.useStandardConfiguration();
 		});
 		
 		this.http = http;
@@ -27,7 +26,7 @@ export class ArchivesDB{
 	}
 	add(url){
 		var myHeaders = new Headers();
-		myHeaders.append('COntent-Type', 'application/json');
+		myHeaders.append('Content-Type', 'application/json');
 		return this.http.fetch('archive', {
 			method: 'post',
 			headers: myHeaders,
