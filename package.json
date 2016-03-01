@@ -3,7 +3,7 @@
   "cozy-displayName": "Web Archives",
   "icon-path": "icon.png",
   "version": "0.0.3",
-  "description": "Save web page back ups on your COzy.",
+  "description": "Save web page back ups on your Cozy.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
