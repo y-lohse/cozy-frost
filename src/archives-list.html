@@ -2,11 +2,11 @@
 	<div repeat.for="archive of archives" class="margin-vertical">
 		<h4>
 			<a route-href="route: archive; params.bind: {id: archive._id}">
-				${archive.url}
+				${archive.title}
 			</a>
 		</h4>
-		<p show.bind="false">
-			Description goes here
+		<p>
+			${archive.description}
 		</p>
 		
 		<div>

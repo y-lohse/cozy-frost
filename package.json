@@ -12,14 +12,16 @@
   "author": "Yannick Lohse",
   "license": "MIT",
   "cozy-permissions": {
-	"webpage": {
-		"description": "Store and display back-ups of web pages."
-	}  
+    "webpage": {
+      "description": "Store and display back-ups of web pages."
+    }
   },
   "dependencies": {
     "body-parser": "^1.15.0",
     "cozydb": "^0.1.10",
     "express": "^4.13.4",
+    "jsdom": "^8.1.0",
+    "q": "^1.4.1",
     "rimraf": "^2.5.2",
     "tar-fs": "^1.10.0",
     "website-scraper": "^0.3.1"

@@ -3,9 +3,7 @@ var router = express.Router();
 var WebPage = require('../models/webpage');
 var fs = require('fs');
 var Q = require('Q');
-var path = require('path');
 var tar = require('tar-fs');
-var rimraf = require('rimraf');
 
 router.get('/archives', function(req, res, next){
 	WebPage.request('all', function(err, pages){
@@ -53,17 +51,20 @@ router.post('/archive', function(req, res, next){
 	
 	console.log('Preparing to scrap ' + url);
 	
+	//create the DB entry
 	Q.ninvoke(WebPage, 'create', {
+		'title': slug,
+		'description':'',
 		'url': url,
-		'slug': slug
+		'slug': slug,
 	})
 	.then(function(webpageInstance){
-		console.log('DB object created');
+		console.log('DB entry created');
 		
 		webpage = webpageInstance;
 		
 		//everything is ok for the user, the rest will be async
-		res.status(200).send();
+		res.status(200).json(webpage);
 		
 		//prepare scraper
 		var scraper = require('website-scraper');
@@ -73,27 +74,43 @@ router.post('/archive', function(req, res, next){
 			directory: scrapDestination,
 		};
 		
+		//start scraping
 		return scraper.scrape(options);
 	})
 	.then(function(result){
 		console.log('Finished scraping');
-		console.log(result);
 		
+		//create a tarball containing allthe files
 		return packWebPage(tarball, scrapDestination);
 	})
 	.then(function(){
 		var rstream = fs.createReadStream(tarball);
 		
+		//insert the tarball in the database
 		return Q.ninvoke(webpage, 'attachBinary', rstream);
 	})
 	.then(function(){
 		console.log(slug + 'tarball transfered to database');
 		
+		//delete the tarball
 		return Q.nfcall(fs.unlink, tarball);
 	})
 	.then(function(){
 		console.log(tarball + ' deleted');
 		
+		//parse out some infos from the scrapped page
+		return parsePageInfos(scrapDestination + '/index.html');
+	})
+	.then(function(infos){
+		//update infos
+		infos.title = infos.title || slug;
+		infos.description = infos.description || infos.title;
+		
+		return Q.ninvoke(webpage, 'updateAttributes', infos);
+	})
+	.then(function(){
+		//delete the files
+		var rimraf = require('rimraf');
 		return Q.nfcall(rimraf, scrapDestination);
 	})
 	.then(function(){
@@ -115,6 +132,33 @@ function packWebPage(tarball, scrapDestination){
 	
 	writer.on('error', function(err){
 		def.reject(err);
+	});
+	
+	return def.promise;
+}
+
+function parsePageInfos(file){
+	var jsdom = require('jsdom');
+	var def = Q.defer();
+		
+	jsdom.env(file, function(err, window){
+		if (err) def.reject(err);
+		else{
+			var doc = window.document;
+
+			var infos = {
+				title: '',
+				description: ''
+			};
+			
+			var titleNode = doc.querySelector('title'),
+				descriptionNode = doc.querySelectorAll('meta[name="description"]');
+			
+			if (titleNode) infos.title = titleNode.textContent;
+			if (descriptionNode[0]) infos.description = descriptionNode[0].getAttribute('content');
+			
+			def.resolve(infos);
+		}
 	});
 	
 	return def.promise;

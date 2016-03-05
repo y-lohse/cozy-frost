@@ -34,8 +34,9 @@ export class ArchivesDB{
 				url: url
 			})
 		})
-		.then(response => {
-			this.archives.push({_id: 1, url: url});
+		.then(response => response.json())
+		.then(archive => {
+			this.archives.push(archive);
 		});
 	}
 	remove(archive){

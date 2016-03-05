@@ -23,7 +23,7 @@ app.use(archivesController);
     Start the HTTP server.
 */
 cozydb.configure(__dirname, null, function(){
-	var server = app.listen(9250, function (){
+	var server = app.listen(9255, function (){
 		var host = server.address().address;
 		var port = server.address().port;
 
