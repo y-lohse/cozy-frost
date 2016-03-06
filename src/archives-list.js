@@ -15,3 +15,4 @@ export class ArchivesList{
 		this.ArchivesDB.remove(archive);
 	}
 }
+

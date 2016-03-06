@@ -118,6 +118,11 @@ html,body,.page-host{
 	background: #db1515;
 	color: #fff;
 }
+.archive-item  .archived{
+	float: right;
+	color: #737373;
+	font-size: 16px;
+}
 
 iframe{
 	width: 100%;

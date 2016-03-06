@@ -1,4 +1,6 @@
 <template>
+	<require from="./date-format"></require>
+	
 	<div repeat.for="archive of archives" class="archive-item">
 		<h4>
 			<a route-href="route: archive; params.bind: {id: archive._id}">
@@ -17,6 +19,10 @@
 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 				delete
 			</button>
+			
+			<span class="archived">
+				Archived ${archive.archived | dateFormat}
+			</span>
 		</div>
 	</div>
 </template>

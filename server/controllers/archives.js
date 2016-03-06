@@ -57,6 +57,8 @@ router.post('/archive', function(req, res, next){
 		'description':'',
 		'url': url,
 		'slug': slug,
+		'processed': false,
+		'archived': new Date(),
 	})
 	.then(function(webpageInstance){
 		console.log('DB entry created');
@@ -105,6 +107,7 @@ router.post('/archive', function(req, res, next){
 		//update infos
 		infos.title = infos.title || slug;
 		infos.description = infos.description || infos.title;
+		infos.processed = true;
 		
 		return Q.ninvoke(webpage, 'updateAttributes', infos);
 	})

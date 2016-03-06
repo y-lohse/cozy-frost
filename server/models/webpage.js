@@ -13,6 +13,15 @@ var WebPage = cozydb.getModel('WebPage', {
 	'slug': {
 		type: String
 	},
+	'processed': {
+		type: Boolean
+	},
+	'archived': {
+		type: Date
+	},
+	'tags': {
+		type: Array
+	},
 });
 
 module.exports = WebPage;
