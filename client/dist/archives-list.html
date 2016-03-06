@@ -1,13 +1,16 @@
 <template>
 	<require from="./date-format"></require>
 	
-	<div repeat.for="archive of archives" class="archive-item">
+	<div repeat.for="archive of archives" class="archive-item ${archive.processed ? '' : 'processing'}">
 		<h4>
-			<a route-href="route: archive; params.bind: {id: archive._id}">
+			<a route-href="route: archive; params.bind: {id: archive._id}" show.bind="archive.processed">
 				${archive.title}
 			</a>
+			<span show.bind="!archive.processed">
+				${archive.title}
+			</span>
 		</h4>
-		<h3>
+		<h3 show.bind="archive.processed">
 			${archive.url}
 		</h3>
 		<p>
@@ -20,7 +23,7 @@
 				delete
 			</button>
 			
-			<span class="archived">
+			<span class="archived" show.bind="archive.processed">
 				Archived ${archive.archived | dateFormat}
 			</span>
 		</div>

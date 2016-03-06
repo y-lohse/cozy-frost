@@ -53,8 +53,8 @@ router.post('/archive', function(req, res, next){
 	
 	//create the DB entry
 	Q.ninvoke(WebPage, 'create', {
-		'title': slug,
-		'description':'',
+		'title': url,
+		'description':'Back up in progress.',
 		'url': url,
 		'slug': slug,
 		'processed': false,

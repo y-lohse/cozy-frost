@@ -82,11 +82,27 @@ html,body,.page-host{
 	background: #4f7093;
 }
 
-.main-container{
-	max-width: 600px;
-	margin: 60px auto 10px;
+@media screen and (max-height: 600px){
+	.header{
+		height: 80px;
+	}
+	.add-form{
+		left: 10px;
+		right: 10px;
+	}
 }
 
+.main-container{
+	max-width: 700px;
+	margin: 30px auto 10px;
+}
+
+.archive-item{
+	padding: 15px;
+}
+.archive-item.processing{
+	background: #e5e5e5;
+}
 .archive-item h4{
 	margin: 0 0 3px;
 	font-size: 20px;
@@ -97,10 +113,12 @@ html,body,.page-host{
 	color: #006bd8;
 }
 .archive-item h3{
-	margin: 0 0 3px;
+	margin: 0 0 5px;
 	font-size: 16px;
 	color: #21aa1a;
 	font-weight: normal;
+	word-break: break-all;
+	line-height: 1.2;
 }
 .archive-item p{
 	margin: 0 0 10px;

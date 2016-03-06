@@ -10,5 +10,6 @@ export class AddArchiveForm{
 	}
 	submit(){
 		this.ArchivesDB.add(this.url);
+		this.url = '';
 	}
 }
