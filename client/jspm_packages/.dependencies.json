@@ -92,9 +92,6 @@
   },
   "github:github/fetch@0.10.1": {},
   "npm:babel-core@5.8.35": {},
-  "npm:font-awesome@4.5.0": {
-    "css": "jspm:css@0.1"
-  },
   "npm:babel-runtime@5.8.35": {
     "process": "github:jspm/nodelibs-process@^0.1.0"
   },
@@ -150,18 +147,13 @@
   "github:jspm/nodelibs-process@0.1.2": {
     "process": "npm:process@^0.11.0"
   },
-  "github:twbs/bootstrap@3.3.6": {
-    "jquery": "github:components/jquery"
-  },
   "npm:process@0.11.2": {
     "assert": "github:jspm/nodelibs-assert@^0.1.0"
   },
-  "github:systemjs/plugin-css@0.1.20": {},
   "github:systemjs/plugin-json@0.1.0": {},
   "github:jspm/nodelibs-assert@0.1.0": {
     "assert": "npm:assert@^1.3.0"
   },
-  "github:components/jquery@2.2.0": {},
   "npm:assert@1.3.0": {
     "util": "npm:util@0.10.3"
   },
