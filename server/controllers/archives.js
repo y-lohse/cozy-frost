@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var WebPage = require('../models/webpage');
 var fs = require('fs');
-var Q = require('Q');
+var Q = require('q');
 var tar = require('tar-fs');
 
 router.get('/archives', function(req, res, next){
