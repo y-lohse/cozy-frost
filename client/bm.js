@@ -10,6 +10,7 @@
 		fetch(api, {
 			method: 'post',
 			headers: myHeaders,
+			redirect: 'follow',
 			mode: 'no-cors',
 			body: JSON.stringify({
 				url: url
