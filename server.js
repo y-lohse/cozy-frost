@@ -6,7 +6,9 @@ var cozydb = require('cozydb');
 /*
     Configuration section.
 */
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+	type: '*/*'
+}));
 //app.use(bodyParser.urlencoded({
 //    extended: true
 //}));

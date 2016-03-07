@@ -6,6 +6,11 @@
 			</label>
 			<input type="url" value.bind="url" id="url" class="field" placeholder="http://example.com" />
 			<input type="submit" value="save" class="btn" />
+			
+			<div class="bookmarklet">
+				Or add the
+				<a href="javascript:(function(){var%20script=document.createElement('script');script.src='${href}bm.js?'+Math.floor((+new%20Date)/(864e5));document.body.appendChild(script);})()">Frost</a> bookmarklet to your bookmarks.
+			</div>
 		</div>
 	</form>
 </template>

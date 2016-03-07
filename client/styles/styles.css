@@ -45,6 +45,7 @@ html,body,.page-host{
 	padding: 8px;
 	transform: translateY(-50%);
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	padding-bottom: 24px;
 }
 .add-form .form-wrapper{
 	position: relative;
@@ -82,6 +83,13 @@ html,body,.page-host{
 .add-form .btn:active{
 	background: #4f7093;
 }
+.add-form .bookmarklet{
+	position: absolute;
+	top: 100%;
+	padding-top: 4px;
+	font-size: 14px;
+	color: #737373;
+}
 
 @media screen and (max-height: 600px){
 	.header{
@@ -95,7 +103,7 @@ html,body,.page-host{
 
 .main-container{
 	max-width: 700px;
-	margin: 30px auto 10px;
+	margin: 40px auto 10px;
 }
 
 .archive-item{
