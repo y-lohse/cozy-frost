@@ -42,10 +42,6 @@ router.delete('/archive/:id', function(req, res, next){
 	});
 });
 
-router.get('/public/test', function(req, res, next){
-	res.send('ok');
-});
-
 router.post('/archive', function(req, res, next){
 	var url = req.body.url,
 		slug = url.match(/^https?:\/\/(www\.)?(\w+)\/?/)[2] + '-' + (new Date().getTime()),
