@@ -42,7 +42,7 @@ router.delete('/archive/:id', function(req, res, next){
 	});
 });
 
-router.post('/public/test', function(req, res, next){
+router.get('/public/test', function(req, res, next){
 	res.send('ok');
 });
 

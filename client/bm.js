@@ -8,7 +8,7 @@
 		myHeaders.append('Content-Type', 'application/json');
 		
 		fetch(api, {
-			method: 'post',
+			method: 'get',
 			headers: myHeaders,
 			redirect: 'follow',
 			mode: 'no-cors',
