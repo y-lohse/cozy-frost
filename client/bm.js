@@ -1,7 +1,7 @@
 (function(){
 	var url = window.location.href,
 		scriptSrc = document.currentScript.getAttribute('src'),
-		api = scriptSrc.substr(0, scriptSrc.lastIndexOf('/')) + '/archive';
+		api = scriptSrc.substr(0, scriptSrc.lastIndexOf('/')) + '/snapshot';
 	
 	if (self.fetch){
 		var myHeaders = new Headers();

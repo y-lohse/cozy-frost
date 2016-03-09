@@ -1,0 +1,17 @@
+<template>
+	<form submit.delegate="submit()" class="add-form">
+		<div class="form-wrapper">
+			<label for="url" class="sr-only">
+				URL:
+			</label>
+			<input type="url" value.bind="url" id="url" class="field" placeholder="http://example.com" />
+			<input type="submit" value="save" class="btn" />
+			
+			<div class="bookmarklet">
+				Or use the
+				<a href="javascript:(function(){var%20script=document.createElement('script');script.src='${href}bm.js?'+Math.floor((+new%20Date)/(864e5));document.body.appendChild(script);})()">Save in Frost</a>
+				bookmarklet.
+			</div>
+		</div>
+	</form>
+</template>

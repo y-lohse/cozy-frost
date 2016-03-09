@@ -10,9 +10,9 @@ export class App {
 		  title: 'Frost'
 	  },
       {
-		  route: ['/archive/:id'],
-		  name: 'archive',
-		  moduleId: 'archive',
+		  route: ['/snapshot/:id'],
+		  name: 'snapshot',
+		  moduleId: 'snapshot',
 		  nav: true, 
 		  title: 'Frost',
 		  href: 'a'

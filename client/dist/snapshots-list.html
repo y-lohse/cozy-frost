@@ -1,0 +1,31 @@
+<template>
+	<require from="./date-format"></require>
+	
+	<div repeat.for="snapshot of snapshots" class="archive-item ${snapshot.processed ? '' : 'processing'}">
+		<h4>
+			<a route-href="route: snapshot; params.bind: {id: snapshot._id}" show.bind="snapshot.processed">
+				${snapshot.title}
+			</a>
+			<span show.bind="!snapshot.processed">
+				${snapshot.title}
+			</span>
+		</h4>
+		<h3 show.bind="snapshot.processed">
+			${snapshot.url}
+		</h3>
+		<p>
+			${snapshot.description}
+		</p>
+		
+		<div class="archive-meta" show.bind="snapshot.processed">
+			<button click.trigger="removeSnapshot(snapshot)" class="btn btn-delete">
+				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+				delete
+			</button>
+			
+			<span class="archived">
+				Archived ${snapshot.archived | dateFormat}
+			</span>
+		</div>
+	</div>
+</template>
