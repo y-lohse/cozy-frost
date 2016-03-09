@@ -123,6 +123,11 @@ router.post('/snapshot', function(req, res, next){
 	.then(function(){
 		console.log(scrapDestination + ' deleted');
 	})
+	.catch(function(err){
+		//if anything fails, delete the db entry
+		console.log('Processing of ' + url + ' failed: ' + err);
+		if (snapshot) snapshot.destroy(function(){});
+	})
 	.done();
 });
 
