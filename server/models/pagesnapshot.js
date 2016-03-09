@@ -1,6 +1,6 @@
 var cozydb = require('cozydb');
 
-var WebPage = cozydb.getModel('WebPage', {
+var PageSnapshot = cozydb.getModel('PageSnapshot', {
 	'url': {
 		type: String
 	},
@@ -24,4 +24,4 @@ var WebPage = cozydb.getModel('WebPage', {
 	},
 });
 
-module.exports = WebPage;
+module.exports = PageSnapshot;

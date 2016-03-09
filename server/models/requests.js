@@ -1,7 +1,7 @@
 var cozydb = require('cozydb');
 
 module.exports = {
-	webpage: {
+	pagesnapshot: {
 		all: cozydb.defaultRequests.all
 	}
 };

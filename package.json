@@ -12,8 +12,8 @@
   "author": "Yannick Lohse",
   "license": "MIT",
   "cozy-permissions": {
-    "webpage": {
-      "description": "Store and display back-ups of web pages."
+    "pagesnapshot": {
+      "description": "Store and display snapshots of web pages."
     }
   },
   "dependencies": {

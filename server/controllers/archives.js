@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var WebPage = require('../models/webpage');
+var PageSnapshot = require('../models/pagesnapshot');
 var fs = require('fs');
 var Q = require('q');
 var tar = require('tar-fs');
 
 router.get('/archives', function(req, res, next){
-	WebPage.request('all', function(err, pages){
+	PageSnapshot.request('all', function(err, pages){
 		if (err) next(err);
 		else{
 			res.status(200).json(pages);
@@ -15,7 +15,7 @@ router.get('/archives', function(req, res, next){
 });
 
 router.get('/archive/:id', function(req, res, next){
-	WebPage.find(req.params.id, function(err, page){
+	PageSnapshot.find(req.params.id, function(err, page){
 		if (err) next(err);
 		else if (!page) next();
 		else{
@@ -30,7 +30,7 @@ router.get('/archive/:id', function(req, res, next){
 });
 
 router.delete('/archive/:id', function(req, res, next){
-	WebPage.find(req.params.id, function(err, page){
+	PageSnapshot.find(req.params.id, function(err, page){
 		if (err) next(err);
 		else if (!page) next();
 		else{
@@ -52,7 +52,7 @@ router.post('/archive', function(req, res, next){
 	console.log('Preparing to scrap ' + url);
 	
 	//create the DB entry
-	Q.ninvoke(WebPage, 'create', {
+	Q.ninvoke(PageSnapshot, 'create', {
 		'title': url,
 		'description':'Back up in progress.',
 		'url': url,
@@ -83,7 +83,7 @@ router.post('/archive', function(req, res, next){
 		console.log('Finished scraping');
 		
 		//create a tarball containing allthe files
-		return packWebPage(tarball, scrapDestination);
+		return packSnapshot(tarball, scrapDestination);
 	})
 	.then(function(){
 		var rstream = fs.createReadStream(tarball);
@@ -122,7 +122,7 @@ router.post('/archive', function(req, res, next){
 	.done();
 });
 
-function packWebPage(tarball, scrapDestination){
+function packSnapshot(tarball, scrapDestination){
 	var def = Q.defer();
 	
 	//create a tarball
