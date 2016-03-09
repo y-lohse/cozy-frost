@@ -3,6 +3,7 @@ var router = express.Router();
 var PageSnapshot = require('../models/pagesnapshot');
 var fs = require('fs');
 var Q = require('q');
+var zlib = require('zlib');
 var tar = require('tar-fs');
 
 router.get('/snapshots', function(req, res, next){
@@ -19,12 +20,15 @@ router.get('/snapshot/:id', function(req, res, next){
 		if (err) next(err);
 		else if (!page) next();
 		else{
-			var stream = page.getBinary(page.slug + '.tar', function(err){
-				if (err) console.log(err);
-				res.status(200).json({url: 'cache/' + page.slug + '/'});
+			var stream = page.getBinary(page.slug + '.tar.gz', function(err){
+				if (err) next(err);
+				else res.status(200).json({url: 'cache/' + page.slug + '/'});
 			});
 			
-			stream.pipe(tar.extract(__dirname + '/../../client/cache/' + page.slug));
+			var pumpify = require('pumpify');
+			var untar = pumpify(zlib.createGunzip(), tar.extract(__dirname + '/../../client/cache/' + page.slug));
+			
+			stream.pipe(untar);
 		}
 	});
 });
@@ -46,8 +50,8 @@ router.post('/snapshot', function(req, res, next){
 	var url = req.body.url,
 		slug = url.match(/^https?:\/\/(www\.)?(\w+)\/?/)[2] + '-' + (new Date().getTime()),
 		scrapDestination = './scrap/' + slug,
-		tarball = './scrap/' + slug + '.tar',
-		webpage = null;
+		tarball = './scrap/' + slug + '.tar.gz',
+		snapshot = null;
 	
 	console.log('Preparing to scrap ' + url);
 	
@@ -60,13 +64,13 @@ router.post('/snapshot', function(req, res, next){
 		'processed': false,
 		'archived': new Date(),
 	})
-	.then(function(webpageInstance){
+	.then(function(snapshotInstance){
 		console.log('DB entry created');
 		
-		webpage = webpageInstance;
+		snapshot = snapshotInstance;
 		
 		//everything is ok for the user, the rest will be async
-		res.status(200).json(webpage);
+		res.status(200).json(snapshot);
 		
 		//prepare scraper
 		var scraper = require('website-scraper');
@@ -89,7 +93,7 @@ router.post('/snapshot', function(req, res, next){
 		var rstream = fs.createReadStream(tarball);
 		
 		//insert the tarball in the database
-		return Q.ninvoke(webpage, 'attachBinary', rstream);
+		return Q.ninvoke(snapshot, 'attachBinary', rstream);
 	})
 	.then(function(){
 		console.log(slug + 'tarball transfered to database');
@@ -109,7 +113,7 @@ router.post('/snapshot', function(req, res, next){
 		infos.description = infos.description || infos.title;
 		infos.processed = true;
 		
-		return Q.ninvoke(webpage, 'updateAttributes', infos);
+		return Q.ninvoke(snapshot, 'updateAttributes', infos);
 	})
 	.then(function(){
 		//delete the files
@@ -125,9 +129,11 @@ router.post('/snapshot', function(req, res, next){
 function packSnapshot(tarball, scrapDestination){
 	var def = Q.defer();
 	
+	var gzip = zlib.createGzip();
+	
 	//create a tarball
 	var writer = fs.createWriteStream(tarball);
-	var packer = tar.pack(scrapDestination).pipe(writer);
+	var packer = tar.pack(scrapDestination).pipe(gzip).pipe(writer);
 	
 	writer.on('finish', function(){
 		def.resolve();
