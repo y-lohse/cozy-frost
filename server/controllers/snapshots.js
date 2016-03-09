@@ -5,7 +5,7 @@ var fs = require('fs');
 var Q = require('q');
 var tar = require('tar-fs');
 
-router.get('/archives', function(req, res, next){
+router.get('/snapshots', function(req, res, next){
 	PageSnapshot.request('all', function(err, pages){
 		if (err) next(err);
 		else{
@@ -14,7 +14,7 @@ router.get('/archives', function(req, res, next){
 	});
 });
 
-router.get('/archive/:id', function(req, res, next){
+router.get('/snapshot/:id', function(req, res, next){
 	PageSnapshot.find(req.params.id, function(err, page){
 		if (err) next(err);
 		else if (!page) next();
@@ -29,7 +29,7 @@ router.get('/archive/:id', function(req, res, next){
 	});
 });
 
-router.delete('/archive/:id', function(req, res, next){
+router.delete('/snapshot/:id', function(req, res, next){
 	PageSnapshot.find(req.params.id, function(err, page){
 		if (err) next(err);
 		else if (!page) next();
@@ -42,7 +42,7 @@ router.delete('/archive/:id', function(req, res, next){
 	});
 });
 
-router.post('/archive', function(req, res, next){
+router.post('/snapshot', function(req, res, next){
 	var url = req.body.url,
 		slug = url.match(/^https?:\/\/(www\.)?(\w+)\/?/)[2] + '-' + (new Date().getTime()),
 		scrapDestination = './scrap/' + slug,

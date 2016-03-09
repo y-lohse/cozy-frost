@@ -13,7 +13,7 @@ export class ArchivesDB{
 		
 		this.http = http;
 		
-		this.http.fetch('archives')
+		this.http.fetch('snapshots')
 		.then(response => response.json())
 		.then(archives => {
 			archives.forEach(archive => {
@@ -27,7 +27,7 @@ export class ArchivesDB{
 	add(url){
 		var myHeaders = new Headers();
 		myHeaders.append('Content-Type', 'application/json');
-		return this.http.fetch('archive', {
+		return this.http.fetch('snapshot', {
 			method: 'post',
 			headers: myHeaders,
 			body: JSON.stringify({
@@ -40,7 +40,7 @@ export class ArchivesDB{
 		});
 	}
 	remove(archive){
-		this.http.fetch('archive/' + archive._id, {
+		this.http.fetch('snapshot/' + archive._id, {
 			method: 'DELETE'
 		})
 		.then(response => {
@@ -48,7 +48,7 @@ export class ArchivesDB{
 		});
 	}
 	get(id){
-		return this.http.fetch('archive/' + id, {
+		return this.http.fetch('snapshot/' + id, {
 			method: 'GET'
 		})
 		.then(response => response.json());
