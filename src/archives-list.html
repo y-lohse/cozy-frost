@@ -17,13 +17,13 @@
 			${archive.description}
 		</p>
 		
-		<div class="archive-meta">
+		<div class="archive-meta" show.bind="archive.processed">
 			<button click.trigger="removeArchive(archive)" class="btn btn-delete">
 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 				delete
 			</button>
 			
-			<span class="archived" show.bind="archive.processed">
+			<span class="archived">
 				Archived ${archive.archived | dateFormat}
 			</span>
 		</div>
