@@ -8,8 +8,6 @@ Frost is an app for [Cozy Cloud](http://cozy.io) that lets you take snapshots of
 
 Link rot is a huge problem on the web, and it's especially painful when one of your favorite pages just vanishes. Services like the [Wayback Machine](https://archive.org/web/) or [Pinboard](https://pinboard.in/) are great, but they rely on someone having money to maintain the service and in the end, you still don't own your data. A personnal cloud is therefor the ideal place to store snapshots of sites you care about, and this is what Frost does.
 
-**Frost is currently in alpha. Things work mostly fine and you're welcome to try it, but please hold on a bit more before starting serious usage.**
-
 The [Snowflake icon](https://thenounproject.com/search/?q=freeze&i=214113) is by Mihael Tomic from the Noun Project.
 The [header's background](https://unsplash.com/photos/MvftAbKK9Ek) is a photo from [Sergei Akulitch](https://unsplash.com/sakulich).
 
