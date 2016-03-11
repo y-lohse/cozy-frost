@@ -6,7 +6,9 @@ var cozydb = require('cozydb');
 /*
     Configuration section.
 */
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+	type: '*/*'
+}));
 //app.use(bodyParser.urlencoded({
 //    extended: true
 //}));
@@ -16,8 +18,8 @@ app.use(express.static('client'));
 /*
     Define routes and their handler.
 */
-var archivesController = require('./server/controllers/archives');
-app.use(archivesController);
+var snapshotsController = require('./server/controllers/snapshots');
+app.use(snapshotsController);
 
 /*
     Start the HTTP server.

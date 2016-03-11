@@ -10,6 +10,10 @@ Link rot is a huge problem on the web, and it's especially painful when one of y
 
 **Frost is currently in alpha. Things work mostly fine and you're welcome to try it, but please hold on a bit more before starting serious usage.**
 
+The [Snowflake icon](https://thenounproject.com/search/?q=freeze&i=214113) is by Mihael Tomic from the Noun Project.
+The [header's background](https://unsplash.com/photos/MvftAbKK9Ek) is a photo from [Sergei Akulitch](https://unsplash.com/sakulich).
+
+
 ## What is Cozy?
 
 ![Cozy Logo](https://raw.github.com/mycozycloud/cozy-setup/gh-pages/assets/images/happycloud.png)

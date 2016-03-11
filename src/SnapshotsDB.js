@@ -2,8 +2,8 @@ import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
 
 @inject(HttpClient)
-export class ArchivesDB{
-	archives = [];
+export class SnapshotsDB{
+	snapshots = [];
 
 	constructor(http){
 		http.configure(config => {
@@ -13,21 +13,21 @@ export class ArchivesDB{
 		
 		this.http = http;
 		
-		this.http.fetch('archives')
+		this.http.fetch('snapshots')
 		.then(response => response.json())
-		.then(archives => {
-			archives.forEach(archive => {
-				this.archives.push(archive);
+		.then(snapshots => {
+			snapshots.forEach(snapshot => {
+				this.snapshots.push(snapshot);
 			});
 		});
 	}
-	getArchives(){
-		return this.archives;
+	getAll(){
+		return this.snapshots;
 	}
 	add(url){
 		var myHeaders = new Headers();
 		myHeaders.append('Content-Type', 'application/json');
-		return this.http.fetch('archive', {
+		return this.http.fetch('snapshot', {
 			method: 'post',
 			headers: myHeaders,
 			body: JSON.stringify({
@@ -35,20 +35,20 @@ export class ArchivesDB{
 			})
 		})
 		.then(response => response.json())
-		.then(archive => {
-			this.archives.push(archive);
+		.then(snapshot => {
+			this.snapshots.push(snapshot);
 		});
 	}
-	remove(archive){
-		this.http.fetch('archive/' + archive._id, {
+	remove(snapshot){
+		this.http.fetch('snapshot/' + snapshot._id, {
 			method: 'DELETE'
 		})
 		.then(response => {
-			this.archives.splice(this.archives.indexOf(archive), 1);
+			this.snapshots.splice(this.snapshots.indexOf(snapshot), 1);
 		});
 	}
 	get(id){
-		return this.http.fetch('archive/' + id, {
+		return this.http.fetch('snapshot/' + id, {
 			method: 'GET'
 		})
 		.then(response => response.json());

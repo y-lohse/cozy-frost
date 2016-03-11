@@ -2,8 +2,8 @@
   "name": "cozy-archives",
   "cozy-displayName": "Frost",
   "icon-path": "icon.png",
-  "version": "0.0.3",
-  "description": "Save web page back ups on your Cozy.",
+  "version": "1.0.0",
+  "description": "Save a copy of your favorite web pages, forever.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,8 +12,8 @@
   "author": "Yannick Lohse",
   "license": "MIT",
   "cozy-permissions": {
-    "webpage": {
-      "description": "Store and display back-ups of web pages."
+    "pagesnapshot": {
+      "description": "Store and display snapshots of web pages."
     }
   },
   "dependencies": {
@@ -21,6 +21,7 @@
     "cozydb": "^0.1.10",
     "express": "^4.13.4",
     "jsdom": "^3.1.2",
+    "pumpify": "^1.3.4",
     "q": "^1.4.1",
     "rimraf": "^2.5.2",
     "tar-fs": "^1.10.0",
