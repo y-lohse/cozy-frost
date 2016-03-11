@@ -28,4 +28,15 @@
 			</span>
 		</div>
 	</div>
+	
+	<div class="empty-screen" show.bind="snapshots.length == 0">
+		<img src="assets/flake.png" alt="The snowflake icon for Frost" />
+		<h1>
+			Save a copy of your favorite pages, forever.
+		</h1>
+		<p>
+			You can use the form above or add this <a href="javascript:(function(){var%20script=document.createElement('script');script.src='${href}bm.js?'+Math.floor((+new%20Date)/(864e5));document.body.appendChild(script);})()">Save in Frost</a> bookmarklet to your browser's bookmarks.
+			Activating it will save the page you're looking at without having to open up Frost!
+		</p>
+	</div>
 </template>

@@ -4,9 +4,11 @@ import {SnapshotsDB} from 'SnapshotsDB';
 @inject(SnapshotsDB)
 export class SnapshotsList{
 	snapshots = [];
+	href = '';
 
 	constructor(SnapshotsDB){
 		this.SnapshotsDB = SnapshotsDB;
+		this.href = window.location.href;
 	}
 	created(){
 		this.snapshots = this.SnapshotsDB.getAll();

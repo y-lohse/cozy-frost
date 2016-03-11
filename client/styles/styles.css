@@ -24,6 +24,9 @@ html,body,.page-host{
 	font-size: 18px;
 	text-decoration: none;
 }
+img{
+	max-width: 100%;
+}
 
 .header{
 	height: 150px;
@@ -149,6 +152,20 @@ html,body,.page-host{
 	float: right;
 	color: #737373;
 	font-size: 16px;
+}
+
+.empty-screen{
+	padding: 30px 0;
+	text-align: center;
+	color: #819aa5;
+}
+.empty-screen p{
+	font-size: 20px;
+	line-height: 1.5;
+}
+.empty-screen a{
+	color: #006bd8;
+	padding: 2px 6px;
 }
 
 iframe{
