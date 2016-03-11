@@ -2,8 +2,8 @@
   "name": "cozy-archives",
   "cozy-displayName": "Frost",
   "icon-path": "icon.png",
-  "version": "0.0.3",
-  "description": "Save web page back ups on your Cozy.",
+  "version": "1.0.0",
+  "description": "Save a copy of your favorite web pages, forever.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
