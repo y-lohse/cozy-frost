@@ -15,6 +15,15 @@ router.get('/snapshots', function(req, res, next){
 	});
 });
 
+router.get('/snapshots/:id', function(req, res, next){
+	PageSnapshot.find(req.params.id, function(err, page){
+		if (err) next(err);
+		else{
+			res.status(200).json(page);
+		}
+	});
+});
+
 router.get('/snapshot/:id', function(req, res, next){
 	PageSnapshot.find(req.params.id, function(err, page){
 		if (err) next(err);
