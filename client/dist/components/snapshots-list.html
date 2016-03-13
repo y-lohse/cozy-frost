@@ -1,6 +1,6 @@
 <template>
-	<require from="./date-format"></require>
-	<require from="bookmarklet"></require>
+	<require from="services/date-format"></require>
+	<require from="components/bookmarklet"></require>
 	
 	<div repeat.for="snapshot of snapshots" class="archive-item ${snapshot.processed ? '' : 'processing'}">
 		<h4>

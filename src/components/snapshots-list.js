@@ -1,5 +1,5 @@
 import {inject} from 'aurelia-framework';
-import {SnapshotsDB} from 'SnapshotsDB';
+import {SnapshotsDB} from 'services/SnapshotsDB';
 
 @inject(SnapshotsDB)
 export class SnapshotsList{
