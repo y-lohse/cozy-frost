@@ -1,7 +1,7 @@
 export class Bookmarklet{
-	href = '';
+	appPath = '';
  
  	constructor(){
-		this.href = window.location.href;
+		this.appPath = window.location.origin + window.location.pathname;
 	}
 }
