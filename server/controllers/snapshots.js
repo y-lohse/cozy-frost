@@ -77,7 +77,7 @@ router.post('/snapshot', function(req, res, next){
 	//create the DB entry
 	Q.ninvoke(PageSnapshot, 'create', {
 		'title': url,
-		'description':'Back up in progress.',
+		'description': url,
 		'url': url,
 		'slug': slug,
 		'processed': false,

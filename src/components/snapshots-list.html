@@ -14,8 +14,12 @@
 		<h3 show.bind="snapshot.processed">
 			${snapshot.url}
 		</h3>
-		<p>
+		
+		<p show.bind="snapshot.processed">
 			${snapshot.description}
+		</p>
+		<p show.bind="!snapshot.processed">
+			Back up in progress, please wait…
 		</p>
 		
 		<div class="archive-meta" show.bind="snapshot.processed">
