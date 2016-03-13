@@ -20,15 +20,25 @@ router.get('/snapshot/:id', function(req, res, next){
 		if (err) next(err);
 		else if (!page) next();
 		else{
-			var stream = page.getBinary(page.slug + '.tar.gz', function(err){
-				if (err) next(err);
-				else res.status(200).json({url: 'cache/' + page.slug + '/'});
+			var extractionPath = __dirname + '/../../client/cache/' + page.slug;
+			
+			//check if the page is already in cache
+			fs.stat(extractionPath, function(err, stats){
+				if (err){
+					var stream = page.getBinary(page.slug + '.tar.gz', function(err){
+						if (err) next(err);
+						else res.status(200).json({url: 'cache/' + page.slug + '/'});
+					});
+
+					var pumpify = require('pumpify');
+					var untar = pumpify(zlib.createGunzip(), tar.extract(extractionPath));
+
+					stream.pipe(untar);
+				}
+				else{
+					res.status(200).json({url: 'cache/' + page.slug + '/'});
+				}
 			});
-			
-			var pumpify = require('pumpify');
-			var untar = pumpify(zlib.createGunzip(), tar.extract(__dirname + '/../../client/cache/' + page.slug));
-			
-			stream.pipe(untar);
 		}
 	});
 });
