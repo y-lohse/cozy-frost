@@ -37,6 +37,7 @@ export class SnapshotsDB{
 		.then(response => response.json())
 		.then(snapshot => {
 			this.snapshots.push(snapshot);
+			if (!snapshot.processed) this.observeSnapshotUntilProcessed(snapshot);
 		});
 	}
 	remove(snapshot){
@@ -52,5 +53,21 @@ export class SnapshotsDB{
 			method: 'GET'
 		})
 		.then(response => response.json());
+	}
+	getOne(id){
+		return this.http.fetch('snapshots/' + id, {
+			method: 'GET'
+		})
+		.then(response => response.json());
+	}
+	observeSnapshotUntilProcessed(snapshot){
+		setTimeout(() => {
+			this.getOne(snapshot._id).then(response => {
+				if (!response.processed) this.observeSnapshotUntilProcessed(snapshot);
+				else{
+					this.snapshots.splice(this.snapshots.indexOf(snapshot), 1, response);
+				}
+			});
+		}, 1000);
 	}
 }

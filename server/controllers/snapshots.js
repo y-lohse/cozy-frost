@@ -15,20 +15,39 @@ router.get('/snapshots', function(req, res, next){
 	});
 });
 
+router.get('/snapshots/:id', function(req, res, next){
+	PageSnapshot.find(req.params.id, function(err, page){
+		if (err) next(err);
+		else{
+			res.status(200).json(page);
+		}
+	});
+});
+
 router.get('/snapshot/:id', function(req, res, next){
 	PageSnapshot.find(req.params.id, function(err, page){
 		if (err) next(err);
 		else if (!page) next();
 		else{
-			var stream = page.getBinary(page.slug + '.tar.gz', function(err){
-				if (err) next(err);
-				else res.status(200).json({url: 'cache/' + page.slug + '/'});
+			var extractionPath = __dirname + '/../../client/cache/' + page.slug;
+			
+			//check if the page is already in cache
+			fs.stat(extractionPath, function(err, stats){
+				if (err){
+					var stream = page.getBinary(page.slug + '.tar.gz', function(err){
+						if (err) next(err);
+						else res.status(200).json({url: 'cache/' + page.slug + '/'});
+					});
+
+					var pumpify = require('pumpify');
+					var untar = pumpify(zlib.createGunzip(), tar.extract(extractionPath));
+
+					stream.pipe(untar);
+				}
+				else{
+					res.status(200).json({url: 'cache/' + page.slug + '/'});
+				}
 			});
-			
-			var pumpify = require('pumpify');
-			var untar = pumpify(zlib.createGunzip(), tar.extract(__dirname + '/../../client/cache/' + page.slug));
-			
-			stream.pipe(untar);
 		}
 	});
 });
@@ -58,7 +77,7 @@ router.post('/snapshot', function(req, res, next){
 	//create the DB entry
 	Q.ninvoke(PageSnapshot, 'create', {
 		'title': url,
-		'description':'Back up in progress.',
+		'description': url,
 		'url': url,
 		'slug': slug,
 		'processed': false,

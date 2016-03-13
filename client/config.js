@@ -201,20 +201,10 @@ System.config({
     }
   },
   bundles: {
-    "app-build-d5c126cdef.js": [
-      "SnapshotsDB.js",
-      "add-snapshot-form.html!github:systemjs/plugin-text@0.0.3.js",
-      "add-snapshot-form.js",
+    "app-build-cd89144a80.js": [
       "app.html!github:systemjs/plugin-text@0.0.3.js",
       "app.js",
-      "date-format.js",
-      "index.html!github:systemjs/plugin-text@0.0.3.js",
-      "index.js",
-      "main.js",
-      "snapshot.html!github:systemjs/plugin-text@0.0.3.js",
-      "snapshot.js",
-      "snapshots-list.html!github:systemjs/plugin-text@0.0.3.js",
-      "snapshots-list.js"
+      "main.js"
     ],
     "aurelia-b23cdcaf13.js": [
       "github:jspm/nodelibs-process@0.1.2.js",
@@ -305,25 +295,5 @@ System.config({
       "npm:process@0.11.2/browser.js"
     ]
   },
-  depCache: {
-    "add-snapshot-form.js": [
-      "npm:aurelia-framework@1.0.0-beta.1.1.3.js",
-      "SnapshotsDB.js"
-    ],
-    "date-format.js": [
-      "npm:moment@2.11.2.js"
-    ],
-    "snapshot.js": [
-      "npm:aurelia-framework@1.0.0-beta.1.1.3.js",
-      "SnapshotsDB.js"
-    ],
-    "snapshots-list.js": [
-      "npm:aurelia-framework@1.0.0-beta.1.1.3.js",
-      "SnapshotsDB.js"
-    ],
-    "SnapshotsDB.js": [
-      "npm:aurelia-framework@1.0.0-beta.1.1.3.js",
-      "npm:aurelia-fetch-client@1.0.0-beta.1.1.0.js"
-    ]
-  }
+  depCache: {}
 });

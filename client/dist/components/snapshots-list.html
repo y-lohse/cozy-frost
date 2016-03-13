@@ -1,5 +1,6 @@
 <template>
-	<require from="./date-format"></require>
+	<require from="services/date-format"></require>
+	<require from="components/bookmarklet"></require>
 	
 	<div repeat.for="snapshot of snapshots" class="archive-item ${snapshot.processed ? '' : 'processing'}">
 		<h4>
@@ -13,8 +14,12 @@
 		<h3 show.bind="snapshot.processed">
 			${snapshot.url}
 		</h3>
-		<p>
+		
+		<p show.bind="snapshot.processed">
 			${snapshot.description}
+		</p>
+		<p show.bind="!snapshot.processed">
+			Back up in progress, please wait…
 		</p>
 		
 		<div class="archive-meta" show.bind="snapshot.processed">
@@ -29,13 +34,13 @@
 		</div>
 	</div>
 	
-	<div class="empty-screen" show.bind="snapshots.length == 0">
+	<div class="empty-screen" show.bind="snapshots.length == 0 && loaded">
 		<img src="assets/flake.png" alt="The snowflake icon for Frost" />
 		<h1>
 			Save a copy of your favorite pages, forever.
 		</h1>
 		<p>
-			You can use the form above or add this <a href="javascript:(function(){var%20script=document.createElement('script');script.src='${href}bm.js?'+Math.floor((+new%20Date)/(864e5));document.body.appendChild(script);})()">Save in Frost</a> bookmarklet to your browser's bookmarks.
+			You can use the form above or add this <bookmarklet></bookmarklet> bookmarklet to your browser's bookmarks.
 			Activating it will save the page you're looking at without having to open up Frost!
 		</p>
 	</div>

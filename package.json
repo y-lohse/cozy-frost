@@ -2,7 +2,7 @@
   "name": "cozy-archives",
   "cozy-displayName": "Frost",
   "icon-path": "icon.png",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Save a copy of your favorite web pages, forever.",
   "main": "server.js",
   "scripts": {

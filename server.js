@@ -25,7 +25,7 @@ app.use(snapshotsController);
     Start the HTTP server.
 */
 cozydb.configure(__dirname, null, function(){
-	var server = app.listen(9255, function (){
+	var server = app.listen(process.env.PORT || 9255, function (){
 		var host = server.address().address;
 		var port = server.address().port;
 
