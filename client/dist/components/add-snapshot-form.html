@@ -1,0 +1,19 @@
+<template>
+	<require from="bookmarklet"></require>
+	
+	<form submit.delegate="submit()" class="add-form">
+		<div class="form-wrapper">
+			<label for="url" class="sr-only">
+				URL:
+			</label>
+			<input type="url" value.bind="url" id="url" class="field" placeholder="http://example.com" />
+			<input type="submit" value="save" class="btn" />
+			
+			<div class="bookmarklet">
+				Or use the
+				<bookmarklet></bookmarklet>
+				bookmarklet.
+			</div>
+		</div>
+	</form>
+</template>
