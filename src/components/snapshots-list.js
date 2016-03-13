@@ -4,6 +4,7 @@ import {SnapshotsDB} from 'services/SnapshotsDB';
 @inject(SnapshotsDB)
 export class SnapshotsList{
 	snapshots = [];
+	loaded = false;
 	href = '';
 
 	constructor(SnapshotsDB){
@@ -12,6 +13,7 @@ export class SnapshotsList{
 	}
 	created(){
 		this.snapshots = this.SnapshotsDB.getAll();
+		this.loaded = true;
 	}
 	removeSnapshot(snapshot){
 		this.SnapshotsDB.remove(snapshot);
