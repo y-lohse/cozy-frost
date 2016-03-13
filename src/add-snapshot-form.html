@@ -1,4 +1,6 @@
 <template>
+	<require from="bookmarklet"></require>
+	
 	<form submit.delegate="submit()" class="add-form">
 		<div class="form-wrapper">
 			<label for="url" class="sr-only">
@@ -9,7 +11,7 @@
 			
 			<div class="bookmarklet">
 				Or use the
-				<a href="javascript:(function(){var%20script=document.createElement('script');script.src='${href}bm.js?'+Math.floor((+new%20Date)/(864e5));document.body.appendChild(script);})()">Save in Frost</a>
+				<bookmarklet></bookmarklet>
 				bookmarklet.
 			</div>
 		</div>

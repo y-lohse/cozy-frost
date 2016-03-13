@@ -1,5 +1,6 @@
 <template>
 	<require from="./date-format"></require>
+	<require from="bookmarklet"></require>
 	
 	<div repeat.for="snapshot of snapshots" class="archive-item ${snapshot.processed ? '' : 'processing'}">
 		<h4>
@@ -35,7 +36,7 @@
 			Save a copy of your favorite pages, forever.
 		</h1>
 		<p>
-			You can use the form above or add this <a href="javascript:(function(){var%20script=document.createElement('script');script.src='${href}bm.js?'+Math.floor((+new%20Date)/(864e5));document.body.appendChild(script);})()">Save in Frost</a> bookmarklet to your browser's bookmarks.
+			You can use the form above or add this <bookmarklet></bookmarklet> bookmarklet to your browser's bookmarks.
 			Activating it will save the page you're looking at without having to open up Frost!
 		</p>
 	</div>
