@@ -144,7 +144,8 @@ router.post('/snapshot', function(req, res, next){
 	})
 	.catch(function(err){
 		//if anything fails, delete the db entry
-		console.log('Processing of ' + url + ' failed: ' + err);
+		console.log('Processing of ' + url + ' failed:');
+		console.log(err);
 		if (snapshot) snapshot.destroy(function(){});
 	})
 	.done();
