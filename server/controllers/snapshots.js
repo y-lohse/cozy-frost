@@ -97,6 +97,11 @@ router.post('/snapshot', function(req, res, next){
 		var options = {
 			urls: [url],
 			directory: scrapDestination,
+			request: {
+				headers: {
+					'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'
+				},
+			},
 		};
 		
 		//start scraping
@@ -144,7 +149,8 @@ router.post('/snapshot', function(req, res, next){
 	})
 	.catch(function(err){
 		//if anything fails, delete the db entry
-		console.log('Processing of ' + url + ' failed: ' + err);
+		console.log('Processing of ' + url + ' failed:');
+		console.log(err);
 		if (snapshot) snapshot.destroy(function(){});
 	})
 	.done();
