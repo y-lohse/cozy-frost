@@ -179,9 +179,13 @@ function packSnapshot(tarball, scrapDestination){
 function parsePageInfos(file){
 	var jsdom = require('jsdom');
 	var def = Q.defer();
-		
+	
 	jsdom.env(file, function(err, window){
-		if (err) def.reject(err);
+		if (err){
+			console.log('jsdom error');
+			console.log(file);
+			def.reject(err);
+		}
 		else{
 			var doc = window.document;
 
